@@ -2,6 +2,12 @@ sentence-transformers==3.4.1
 chromadb>=0.6.0
 groq==0.15.0
 python-dotenv==1.0.1
+# torch 2.2.x (pulled in by sentence-transformers) is built against NumPy 1.x
+# and crashes under NumPy 2 — pin below 2 so embedding works.
+numpy<2
+
+# Query interface — Gradio (chosen in planning.md, added in Milestone 5):
+gradio>=6.9.0
 
 # Query interface — add whichever you use for Milestone 5:
 # gradio>=6.9.0
