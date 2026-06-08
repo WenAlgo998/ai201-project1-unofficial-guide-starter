@@ -90,6 +90,35 @@ def load_documents(documents_dir: str = DOCUMENTS_DIR) -> list[Document]:
 
 # --- 2. Chunking -----------------------------------------------------------
 
+# Course code -> name, sourced from this project's own planning.md Documents
+# table and the document headers (not outside knowledge). Codes we never named
+# definitively are left as bare codes. Including the name in each chunk lets a
+# query like "Data Structures" match a review that only contains "CSC 212".
+COURSE_NAMES = {
+    "CSC 103": "Introduction to Computing",
+    "CSC 210": "Computer Organization",
+    "CSC 212": "Data Structures",
+    "CSC 301": "Discrete Mathematics",
+    "CSC 322": "Software Engineering",
+    "CSC 335": "Algorithms",
+    "CSC 342": "Operating Systems",
+    "CSC 343": "Operating Systems",
+    "CSC 447": "Machine Learning",
+    "CSC 448": "Artificial Intelligence",
+    "CSC 470": "Computer Graphics",
+    "CSC 472": "Computer Graphics",
+    "CSC 473": "Computer Graphics",
+}
+
+
+def course_label(course: str | None) -> str | None:
+    """'CSC 212' -> 'CSC 212 Data Structures' when the name is known, else the code."""
+    if not course:
+        return None
+    name = COURSE_NAMES.get(course)
+    return f"{course} {name}" if name else course
+
+
 def normalize_course(raw: str | None) -> str | None:
     """CCNY writes the same course many ways: 'CSC 21200', 'CSC212', 'CSCI19100',
     'CS322'. Collapse them all to 'CSC <first three digits>' so a course-specific
@@ -154,11 +183,10 @@ def chunk_text(doc: Document) -> list[Chunk]:
         if not body:  # skip headers with no review text
             continue
 
-        # Attribution prefix: "Professor X (CSC 212): ..." or "Professor X: ..."
-        if meta["course"]:
-            prefix = f"Professor {doc.professor} ({meta['course']}): "
-        else:
-            prefix = f"Professor {doc.professor}: "
+        # Attribution prefix: "Professor X (CSC 212 Data Structures): ..."
+        # (course name included when known), or "Professor X: ..." with no course.
+        label = course_label(meta["course"])
+        prefix = f"Professor {doc.professor} ({label}): " if label else f"Professor {doc.professor}: "
         text = prefix + body
 
         chunks.append(Chunk(
@@ -167,6 +195,7 @@ def chunk_text(doc: Document) -> list[Chunk]:
             metadata={
                 "professor": doc.professor,
                 "course": meta["course"],
+                "course_name": COURSE_NAMES.get(meta["course"]),
                 "date": meta["date"],
                 "quality": meta["quality"],
                 "difficulty": meta["difficulty"],

@@ -55,6 +55,8 @@ All sources are individual professor pages on Rate My Professors (school 224 = C
 
 **Preprocessing before chunking:** strip the markdown headers, normalize course codes (e.g., `CSC 21200` / `CSC212` → `CSC 212`) so a course-specific query matches reviews that wrote the code differently, and keep each review's quality/difficulty/date as chunk metadata.
 
+**Refinement (added in Milestone 5):** the attribution prefix now also includes the *course name* when known — `Professor George Wolberg (CSC 212 Data Structures): …` — using a code→name map sourced from this plan's own Documents table. *Why:* during Milestone 5 testing, the eval question "which professor for **Data Structures**?" was refused, because no review text contains the words "Data Structures," only the code `CSC 212`, and grounding (correctly) wouldn't let the model assume the two are the same. Embedding the course name fixes both retrieval (the query now matches the chunk semantically) and generation (the model can connect the question to the right reviews). This is the only divergence from the original spec.
+
 ---
 
 ## Retrieval Approach
