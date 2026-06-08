@@ -14,6 +14,10 @@
      Example: "Student reviews of CS professors at [university] — useful because official
      course descriptions don't reflect teaching style, exam difficulty, or workload." -->
 
+**Student reviews of Computer Science professors at The City College of New York (CCNY).**
+
+The system makes searchable what CCNY CS students say about specific professors — teaching style, grading fairness, workload, exam structure, and which professor to take for a given course. CCNY's official catalog and CUNYfirst schedule list only course titles and credits; they say nothing about whether a professor reads off slides, curves exams, or assigns a heavy group project. That experiential knowledge is scattered across Rate My Professors one professor at a time and can't be queried as a whole — you can't ask "who should I take for Data Structures?" and get a synthesized answer. This guide collects those reviews into a single searchable corpus.
+
 ---
 
 ## Document Sources
@@ -22,18 +26,21 @@
      Be specific: include URLs, subreddit names, forum thread titles, or file names.
      Aim for variety — sources that together cover different subtopics or perspectives. -->
 
+All sources are individual professor pages on Rate My Professors (school 224 = City College of New York, Computer Science). Each page's reviews were extracted into a markdown file in `documents/`. The set deliberately spans the intro sequence through algorithms/theory, OS, AI, and ML, and mixes beloved and disliked professors.
+
 | # | Source | Type | URL or file path |
 |---|--------|------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 | Michael Grossberg (CSC 322 / 473) | Rate My Professors | [854471](https://www.ratemyprofessors.com/professor/854471) · `documents/grossberg-michael.md` |
+| 2 | George Wolberg (CSC 212 / 470-472) | Rate My Professors | [175168](https://www.ratemyprofessors.com/professor/175168) · `documents/wolberg-george.md` |
+| 3 | Irina Gladkova (CSC 301 / 217) | Rate My Professors | [422536](https://www.ratemyprofessors.com/professor/422536) · `documents/gladkova-irina.md` |
+| 4 | Jie Wei (CSC 322) | Rate My Professors | [354797](https://www.ratemyprofessors.com/professor/354797) · `documents/wei-jie.md` |
+| 5 | Izidor Gertner (CSC 210 / 342-343) | Rate My Professors | [489006](https://www.ratemyprofessors.com/professor/489006) · `documents/gertner-izidor.md` |
+| 6 | Zhigang Zhu (CSC 212 + grad) | Rate My Professors | [824284](https://www.ratemyprofessors.com/professor/824284) · `documents/zhu-zhigang.md` |
+| 7 | Erik Grimmelmann (CSC 30100 / 447) | Rate My Professors | [2380866](https://www.ratemyprofessors.com/professor/2380866) · `documents/grimmelmann-erik.md` |
+| 8 | Douglas Troeger (CSC 335) | Rate My Professors | [432142](https://www.ratemyprofessors.com/professor/432142) · `documents/troeger-douglas.md` |
+| 9 | Akira Kawaguchi (CSC 103) | Rate My Professors | [624278](https://www.ratemyprofessors.com/professor/624278) · `documents/kawaguchi-akira.md` |
+| 10 | William Skeith (CSC 103) | Rate My Professors | [1316015](https://www.ratemyprofessors.com/professor/1316015) · `documents/skeith-william.md` |
+| 11 | Stephen Lucci (CSC 304 / 448) | Rate My Professors | [534845](https://www.ratemyprofessors.com/professor/534845) · `documents/lucci-stephen.md` |
 
 ---
 
